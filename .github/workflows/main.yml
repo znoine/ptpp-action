@@ -2,7 +2,7 @@ name: Update key currency info
 
 on:
   schedule:
-  - cron: "0/5 * * * *"
+  - cron: "0/15 * * * *"
 
   workflow_dispatch:
 
