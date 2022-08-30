@@ -8,9 +8,6 @@ jobs:
     name: Phase 1
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        token: ${{ secrets.PERSONAL_ACCESS_KEY }}
     - name: Install jq
       run: sudo apt-get install -y jq 
   phase2:
@@ -24,6 +21,9 @@ jobs:
       - name: Fetch currency data from ninja and create a json file for each league
         run: |
           curl "https://poe.ninja/api/data/CurrencyOverview?league=${{ matrix.leagues }}&type=Currency&language=ko" | jq '[.lines[] | select( .detailsId == "divine-orb" or .detailsId == "exalted-orb" ) | { id:.detailsId, chaosEquivalent:.chaosEquivalent, _t:.pay.sample_time_utc }]' > key-curr_${{ matrix.leagues }}.json
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_KEY }}
       - name: Commit result
         run: |
           git config --global user.email "znoine+githubaction@gmail.com"
