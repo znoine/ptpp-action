@@ -3,6 +3,7 @@ name: Update Key Currency Info
 on:
   schedule:
   - cron: "*/10 * * * *"
+  workflow_dispatch:
 
 env:
   LEAGUE: Kalandra
