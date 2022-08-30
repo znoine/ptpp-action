@@ -4,20 +4,23 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-key-currency:
+  phase1:
+    name: Phase 1
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.PERSONAL_ACCESS_KEY }}
+    - name: Install jq
+      run: sudo apt-get install -y jq 
+  phase2:
+    name: Phase 2
+    needs: phase1
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         league-list: [Kalandra,Hardcore+Kalandra,Standard,Hardcore]
-    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PERSONAL_ACCESS_KEY }}
-      - name: Install jq
-        run: sudo apt-get install -y jq   
-      - name: Delete old files
-        run: | 
-          rm rm key-currency_*.json
       - name: Fetch currency data from ninja and create a json file for each league
         run: |
           curl "https://poe.ninja/api/data/CurrencyOverview?league=$&type=Currency&language=ko" | jq '[.lines[] | select( .detailsId == "divine-orb" or .detailsId == "exalted-orb" ) | { id:.detailsId, chaosEquivalent:.chaosEquivalent, _t:.pay.sample_time_utc }]' > key-curr_$.json
