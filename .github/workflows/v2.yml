@@ -19,11 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        league-list: [Kalandra,Hardcore+Kalandra,Standard,Hardcore]
+        leagues: [Kalandra,Hardcore+Kalandra,Standard,Hardcore]
     steps:
       - name: Fetch currency data from ninja and create a json file for each league
         run: |
-          curl "https://poe.ninja/api/data/CurrencyOverview?league=$&type=Currency&language=ko" | jq '[.lines[] | select( .detailsId == "divine-orb" or .detailsId == "exalted-orb" ) | { id:.detailsId, chaosEquivalent:.chaosEquivalent, _t:.pay.sample_time_utc }]' > key-curr_$.json
+          curl "https://poe.ninja/api/data/CurrencyOverview?league=${{ matrix.leagues }}&type=Currency&language=ko" | jq '[.lines[] | select( .detailsId == "divine-orb" or .detailsId == "exalted-orb" ) | { id:.detailsId, chaosEquivalent:.chaosEquivalent, _t:.pay.sample_time_utc }]' > key-curr_${{ matrix.leagues }}.json
       - name: Commit result
         run: |
           git config --global user.email "znoine+githubaction@gmail.com"
