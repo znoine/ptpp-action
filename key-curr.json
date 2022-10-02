@@ -1,12 +1,12 @@
 [
   {
     "id": "divine-orb",
-    "chaosEquivalent": 200,
-    "_t": "2022-10-02T23:01:59.6991523Z"
+    "chaosEquivalent": 200.01,
+    "_t": "2022-10-02T23:28:53.4559918Z"
   },
   {
     "id": "exalted-orb",
-    "chaosEquivalent": 19.18,
-    "_t": "2022-10-02T23:01:59.6991523Z"
+    "chaosEquivalent": 18.77,
+    "_t": "2022-10-02T23:28:53.4559918Z"
   }
 ]
