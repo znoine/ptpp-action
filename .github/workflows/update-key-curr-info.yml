@@ -22,10 +22,10 @@ jobs:
       - name: Extract key currency info from file
         run: | 
           backup_file=key-curr_$(date +%s).json
+          rm -f backup/*.json
           mv key-curr.json backup/$backup_file
           jq '[.lines[] | select( .detailsId == "divine-orb" or .detailsId == "exalted-orb" ) | { id:.detailsId, chaosEquivalent:.chaosEquivalent, _t:.pay.sample_time_utc }]' fetched.json > key-curr.json
           rm fetched.json
-          find backup/ -name '*.json' -mtime +2 -delete
       - name: Commit result
         run: |
           git config --global user.email "znoine+githubaction@gmail.com"
