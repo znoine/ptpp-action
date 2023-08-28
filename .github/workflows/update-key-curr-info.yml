@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  LEAGUE: Crucible
+  LEAGUE: Ancestor
 
 jobs:
   update-key-curr-info:
