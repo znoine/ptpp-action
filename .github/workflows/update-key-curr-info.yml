@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  LEAGUE: Affliction
+  LEAGUE: Necropolis
 
 jobs:
   update-key-curr-info:
