@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  LEAGUE: Necropolis
+  LEAGUE: Settlers
 
 jobs:
   update-key-curr-info:
