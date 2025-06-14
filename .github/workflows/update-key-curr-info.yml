@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  LEAGUE: Settlers
+  LEAGUE: Mercenaries
 
 jobs:
   update-key-curr-info:
