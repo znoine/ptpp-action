@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  LEAGUE: Mercenaries
+  LEAGUE: Keepers
 
 jobs:
   update-key-curr-info:
